@@ -47,6 +47,8 @@
 		<value>/views/submission/tiles.xml</value>
 		<value>/views/paper/tiles.xml</value>
 		<value>/views/report/tiles.xml</value>
+		<value>/views/quolet/tiles.xml</value>
+	
 		
 	</util:list>
 

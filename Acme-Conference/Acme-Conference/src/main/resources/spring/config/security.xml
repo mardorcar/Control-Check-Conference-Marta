@@ -34,6 +34,8 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/scripts/**"
 			access="permitAll" />
+		<security:intercept-url pattern="/quolet/list.do"
+			access="permitAll" />
 		<security:intercept-url pattern="/styles/**"
 			access="permitAll" />
 		<security:intercept-url pattern="/conference/comment/**"
@@ -61,6 +63,7 @@
 			
 		<security:intercept-url pattern="/message/listByTopic.do"
 			access="isAuthenticated()" />
+		
 			
 		<security:intercept-url pattern="/message/listBySender.do"
 			access="isAuthenticated()" />
@@ -84,6 +87,10 @@
 			pattern="/actor/show.do"
 			access="isAuthenticated()" />
 			
+		<security:intercept-url
+			pattern="/quolet/administrator/*"
+			access="hasRole('ADMINISTRATOR')" />
+		
 		<security:intercept-url
 			pattern="/message/administrator/*"
 			access="hasRole('ADMINISTRATOR')" />

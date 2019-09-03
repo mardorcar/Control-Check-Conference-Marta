@@ -137,6 +137,23 @@
 			code="conferenceComment.show" />
 	</display:column>
 </display:table>
+
+<h4>
+	<spring:message code="conference.quolets" />
+</h4>
+
+<display:table name="quolets" id="quolet" requestURI="${requestURI}"
+	class="displaytag table" pagesize="5">
+	<display:column titleKey="quolet.ticker" property="ticker" />
+	<display:column titleKey="quolet.publicationMoment" property="publicationMoment" />
+	<display:column titleKey="quolet.mode" property="mode" />
+	<display:column titleKey="quolet.cosa2" property="cosa2" />
+	<display:column titleKey="quolet.show">
+		<acme:button url="quolet/show.do?quoletId=${quolet.id}"
+			code="quolet.show" />
+	</display:column>
+</display:table>
+
 <acme:button
 	url="conference/comment/create.do?conferenceId=${conference.id}"
 	code="comment.write" />
