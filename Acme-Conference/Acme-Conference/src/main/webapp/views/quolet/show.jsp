@@ -23,8 +23,16 @@
 
 
 <acme:display code="quolet.ticker" path="${quolet.ticker}" />
-<acme:display code="quolet.publicationMoment" path="${quolet.publicationMoment}" />
-<acme:display code="quolet.mode" path="${quolet.mode}" />
+<jstl:choose>
+	<jstl:when test="${lang eq 'en'}">
+		<spring:message code="quolet.publicationMoment"/>: <fmt:formatDate type = "date" pattern = "yy/MM/dd HH:mm"
+         value = "${quolet.publicationMoment}" />
+    </jstl:when>
+    <jstl:otherwise>
+    	<spring:message code="quolet.publicationMoment"/>: <fmt:formatDate type = "date" pattern = "dd-MM-yy HH:mm"
+         value = "${quolet.publicationMoment}" />
+    </jstl:otherwise>
+</jstl:choose>
 <acme:display code="quolet.cosa2" path="${quolet.cosa2}" />
 <acme:display code="quolet.cosa3" path="${quolet.cosa3}" />
 

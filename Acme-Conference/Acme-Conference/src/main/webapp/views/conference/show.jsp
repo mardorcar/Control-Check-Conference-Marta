@@ -144,15 +144,79 @@
 
 <display:table name="quolets" id="quolet" requestURI="${requestURI}"
 	class="displaytag table" pagesize="5">
-	<display:column titleKey="quolet.ticker" property="ticker" />
-	<display:column titleKey="quolet.publicationMoment" property="publicationMoment" />
-	<display:column titleKey="quolet.mode" property="mode" />
-	<display:column titleKey="quolet.cosa2" property="cosa2" />
-	<display:column titleKey="quolet.show">
-		<acme:button url="quolet/show.do?quoletId=${quolet.id}"
-			code="quolet.show" />
+	<jstl:if test="${((date-quolet.publicationMoment.time)/86400000)<30}">
+	<display:column style="color:indigo" titleKey="quolet.ticker"  property="ticker" />
+
+	<display:column style="color:indigo" titleKey="quolet.publicationMoment">
+	<jstl:choose>
+	<jstl:when test="${lang eq 'en'}">
+	<fmt:formatDate type = "date" pattern = "yy/MM/dd HH:mm"
+         value = "${quolet.publicationMoment}" />
+     </jstl:when>
+    <jstl:otherwise>
+    	<fmt:formatDate type = "date" pattern = "dd-MM-yy HH:mm"
+         value = "${quolet.publicationMoment}" />
+    </jstl:otherwise>
+</jstl:choose>
+</display:column>	
+
+	<display:column style="color:indigo" titleKey="quolet.conference"  property="conference.title" />
+	<display:column style="color:indigo" titleKey="quolet.mode"  property="mode" />
+	<display:column style="color:indigo" titleKey="quolet.show">
+		<acme:cancel url="/quolet/administrator/show.do?quoletId=${quolet.id}" code="quolet.show" />
 	</display:column>
+	
+	</jstl:if>
+			<jstl:if test="${((date-remark.moment.time)/86400000)>30}">
+			<jstl:if test="${((date-remark.moment.time)/86400000)<60}">
+	<display:column style="color:darkSlateGrey" titleKey="quolet.ticker"  property="ticker" />
+
+	<display:column style="color:darkSlateGrey" titleKey="quolet.publicationMoment">
+	<jstl:choose>
+	<jstl:when test="${lang eq 'en'}">
+	<fmt:formatDate type = "date" pattern = "yy/MM/dd HH:mm"
+         value = "${quolet.publicationMoment}" />
+     </jstl:when>
+    <jstl:otherwise>
+    	<fmt:formatDate type = "date" pattern = "dd-MM-yy HH:mm"
+         value = "${quolet.publicationMoment}" />
+    </jstl:otherwise>
+</jstl:choose>
+</display:column>	
+
+	<display:column style="color:darkSlateGrey" titleKey="quolet.conference"  property="conference.title" />
+	<display:column style="color:darkSlateGrey" titleKey="quolet.mode"  property="mode" />
+	<display:column style="color:darkSlateGrey" titleKey="quolet.show">
+		<acme:cancel url="/quolet/administrator/show.do?quoletId=${quolet.id}" code="quolet.show" />
+	</display:column>
+	
+	</jstl:if>
+			</jstl:if>
+			<jstl:if test="${((date-remark.moment.time)/86400000)>60}">
+		<display:column style="color:papayaWhip" titleKey="quolet.ticker"  property="ticker" />
+
+	<display:column style="color:papayaWhip" titleKey="quolet.publicationMoment">
+	<jstl:choose>
+	<jstl:when test="${lang eq 'en'}">
+	<fmt:formatDate type = "date" pattern = "yy/MM/dd HH:mm"
+         value = "${quolet.publicationMoment}" />
+     </jstl:when>
+    <jstl:otherwise>
+    	<fmt:formatDate type = "date" pattern = "dd-MM-yy HH:mm"
+         value = "${quolet.publicationMoment}" />
+    </jstl:otherwise>
+</jstl:choose>
+</display:column>	
+
+	<display:column style="color:papayaWhip" titleKey="quolet.conference"  property="conference.title" />
+	<display:column style="color:papayaWhip" titleKey="quolet.mode"  property="mode" />
+	<display:column style="color:papayaWhip" titleKey="quolet.show">
+		<acme:cancel url="/quolet/administrator/show.do?quoletId=${quolet.id}" code="quolet.show" />
+	</display:column>
+	</jstl:if>	
+	
 </display:table>
+
 
 <acme:button
 	url="conference/comment/create.do?conferenceId=${conference.id}"

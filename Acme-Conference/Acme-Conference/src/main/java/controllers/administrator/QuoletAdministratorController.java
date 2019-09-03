@@ -2,8 +2,10 @@
 package controllers.administrator;
 
 import java.util.Collection;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
@@ -44,10 +46,14 @@ public class QuoletAdministratorController extends AbstractController {
 			final Collection<Quolet> finalQuolets = this.quoletService.findFinalQuolets();
 			final Collection<Quolet> draftQuolets = this.quoletService.findDraftQuolets();
 
+			final Locale l = LocaleContextHolder.getLocale();
+			final String lang = l.getLanguage();
+
 			result = new ModelAndView("quolet/list");
 			result.addObject("requestURI", "/quolet/administrator/list.do");
 			result.addObject("finalQuolets", finalQuolets);
 			result.addObject("draftQuolets", draftQuolets);
+			result.addObject("lang", lang);
 
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:/#");
@@ -163,10 +169,14 @@ public class QuoletAdministratorController extends AbstractController {
 			final Quolet quolet = this.quoletService.findOne(quoletId);
 			Assert.notNull(quolet);
 
+			final Locale l = LocaleContextHolder.getLocale();
+			final String lang = l.getLanguage();
+
 			result = new ModelAndView("quolet/show");
 
 			result.addObject("requestURI", "quolet/administrator/show.do");
 			result.addObject("quolet", quolet);
+			result.addObject("lang", lang);
 
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:/#");
