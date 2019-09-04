@@ -72,6 +72,18 @@ public class QuoletService {
 		this.quoletRepository.delete(quolet);
 	}
 
+	public Double publishedRatio() {
+		final Double result = this.quoletRepository.publishedRatio();
+		Assert.notNull(result);
+		return result;
+	}
+
+	public Double unpublishedRatio() {
+		final Double result = this.quoletRepository.unpublishedRatio();
+		Assert.notNull(result);
+		return result;
+	}
+
 	public Collection<Double> statsNumberQuolet() {
 		final Collection<Double> result = this.quoletRepository.statsNumberQuolets();
 		Assert.notNull(result);

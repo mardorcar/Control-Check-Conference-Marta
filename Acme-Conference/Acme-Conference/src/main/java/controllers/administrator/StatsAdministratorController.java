@@ -69,6 +69,8 @@ public class StatsAdministratorController extends AbstractController {
 			final Collection<Double> registrationsPerConference = this.registrationService.statsRegistrationsPerConference();
 			final Collection<Double> conferencesFee = this.conferenceService.statsConferencesFee();
 			final Collection<Double> numberQuolets = this.quoletService.statsNumberQuolet();
+			final Double publishedQuolets = this.quoletService.publishedRatio();
+			final Double unpublishedQuolets = this.quoletService.unpublishedRatio();
 
 			result.addObject("conferencesPerDays", conferencesPerDays);
 			result.addObject("conferencesPerCategory", conferencesPerCategory);
@@ -80,6 +82,8 @@ public class StatsAdministratorController extends AbstractController {
 			result.addObject("registrationsPerConference", registrationsPerConference);
 			result.addObject("conferencesFee", conferencesFee);
 			result.addObject("numberQuolets", numberQuolets);
+			result.addObject("publishedQuolets", publishedQuolets);
+			result.addObject("unpublishedQuolets", unpublishedQuolets);
 
 			result.addObject("requestURI", "/stats/administrator/display.do");
 		} catch (final Exception e) {

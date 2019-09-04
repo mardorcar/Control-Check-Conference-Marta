@@ -3,6 +3,7 @@ package controllers.all;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +26,7 @@ public class SectionController extends AbstractController {
 		ModelAndView result;
 		try {
 			final Section section = this.sectionService.findOne(sectionId);
+			Assert.notNull(section);
 			result = new ModelAndView("section/show");
 			result.addObject("section", section);
 		} catch (final Throwable oops) {
