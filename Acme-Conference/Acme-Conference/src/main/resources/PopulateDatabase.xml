@@ -24,6 +24,19 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean id="userAccount13" class="security.UserAccount">
+		<property name="username" value="admin2" />
+		<property name="password"
+			value="c84258e9c39059a89ab77d846ddab909" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMINISTRATOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
 
 	<bean id="userAccount2" class="security.UserAccount">
 		<property name="username" value="author1" />
@@ -282,6 +295,19 @@
 		<property name="photo"
 			value="https://upload.wikimedia.org/wikipedia/commons/5/5e/John_F._Kennedy%2C_White_House_photo_portrait%2C_looking_up.jpg" />
 		<property name="userAccount" ref="userAccount1" />
+	</bean>
+	
+	<bean id="admin2" class="domain.Administrator">
+		<property name="address"
+			value="1600 Pennsylvania Ave NW, Washington, DC 20500, USA" />
+		<property name="email" value="admin2@" />
+		<property name="middleName" value="M" />
+		<property name="name" value="Marta" />
+		<property name="phone" value="654323098" />
+		<property name="surname" value="Kennedy" />
+		<property name="photo"
+			value="http://blog.lanzatesolo.com.mx/wp-content/uploads/2014/12/iStock_000021512216Medium.jpg" />
+		<property name="userAccount" ref="userAccount13" />
 	</bean>
 
 	<bean id="author1" class="domain.Author">
@@ -1480,6 +1506,47 @@
 		<property name="summary" value="Fifth paper" />
 		<property name="document" value="This is the fifth paper" />
 		<property name="author" ref="author3" />
+	</bean>
+
+	<!-- Quolets -->
+	<bean id="quolet1" class="domain.Quolet">
+		<property name="administrator" ref="admin" />
+		<property name="conference" ref="conference1" />
+		<property name="ticker" value="19-04-19-7H6T" />
+		<property name="publicationMoment" value="2019/04/19 18:45" />
+		<property name="mode" value="FINAL" />
+		<property name="cosa2" value="cosa1TEST" />
+		<property name="cosa3" value="cosa2TEST" />
+	</bean>
+	
+	<bean id="quolet2" class="domain.Quolet">
+		<property name="administrator" ref="admin" />
+		<property name="conference" ref="conference3" />
+		<property name="ticker" value="19-08-01-1B6T" />
+		<property name="publicationMoment" value="2019/08/01 10:45" />
+		<property name="mode" value="FINAL" />
+		<property name="cosa2" value="cosa1TEST" />
+		<property name="cosa3" value="cosa2TEST" />
+	</bean>
+	
+	<bean id="quolet3" class="domain.Quolet">
+		<property name="administrator" ref="admin2" />
+		<property name="conference" ref="conference1" />
+		<property name="ticker" value="19-09-04-8VWT" />
+		<property name="publicationMoment" value="2019/09/04 10:45" />
+		<property name="mode" value="FINAL" />
+		<property name="cosa2" value="cosa1TEST" />
+		<property name="cosa3" value="cosa2TEST" />
+	</bean>
+	
+	<bean id="quolet4" class="domain.Quolet">
+		<property name="administrator" ref="admin2" />
+		<property name="conference" ref="conference3" />
+		<property name="ticker" value="19-03-10-1VNK" />
+		<property name="publicationMoment" value="2019/03/10 10:45" />
+		<property name="mode" value="FINAL" />
+		<property name="cosa2" value="cosa1TEST" />
+		<property name="cosa3" value="cosa2TEST" />
 	</bean>
 
 	<!-- Submissions -->

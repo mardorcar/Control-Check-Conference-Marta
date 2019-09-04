@@ -54,7 +54,7 @@ public class QuoletController extends AbstractController {
 		try {
 			final Quolet quolet = this.quoletService.findOne(quoletId);
 			Assert.notNull(quolet);
-
+			Assert.isTrue(quolet.getMode().equals("FINAL"));
 			result = new ModelAndView("quolet/show");
 
 			result.addObject("requestURI", "quolet/show.do");
@@ -66,5 +66,4 @@ public class QuoletController extends AbstractController {
 
 		return result;
 	}
-
 }

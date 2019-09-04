@@ -21,14 +21,24 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Access(AccessType.PROPERTY)
 public class Quolet extends DomainEntity {
 
-	private Conference	conference;
+	private Administrator	administrator;
+	private Conference		conference;
 
-	private String		ticker;
-	private Date		publicationMoment;
-	private String		mode;				//Esto es modificable
-	private String		cosa2;
-	private String		cosa3;
+	private String			ticker;
+	private Date			publicationMoment;
+	private String			mode;				//Esto es modificable
+	private String			cosa2;
+	private String			cosa3;
 
+
+	@ManyToOne(optional = false)
+	public Administrator getAdministrator() {
+		return this.administrator;
+	}
+
+	public void setAdministrator(final Administrator administrator) {
+		this.administrator = administrator;
+	}
 
 	@NotBlank
 	public String getTicker() {
@@ -40,7 +50,7 @@ public class Quolet extends DomainEntity {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	@NotNull
 	public Date getPublicationMoment() {
 		return this.publicationMoment;

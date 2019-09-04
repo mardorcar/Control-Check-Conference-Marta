@@ -21,4 +21,10 @@ public interface QuoletRepository extends JpaRepository<Quolet, Integer> {
 	@Query("select q from Quolet q where q.mode='DRAFT'")
 	Collection<Quolet> findDraftQuolets();
 
+	@Query("select q from Quolet q where q.mode='FINAL' and q.administrator.id=?1")
+	Collection<Quolet> findFinalQuoletsByAdmin(int adminId);
+
+	@Query("select q from Quolet q where q.mode='DRAFT' and q.administrator.id=?1")
+	Collection<Quolet> findDraftQuoletsByAdmin(int adminId);
+
 }

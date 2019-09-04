@@ -83,12 +83,14 @@ public class ConferenceAdministratorController extends AbstractController {
 			result = new ModelAndView("conference/show");
 
 			final Collection<Submission> allSubmissions = this.submissionService.findSubmissionsByConference(conference);
-			final Date date = new Date();
-			final Boolean submissions = !allSubmissions.isEmpty() && conference.getSubmissionDeadline().before(date);
+			final Date fecha = new Date();
+			final Boolean submissions = !allSubmissions.isEmpty() && conference.getSubmissionDeadline().before(fecha);
 			result.addObject("submissions", submissions);
 
 			final Locale l = LocaleContextHolder.getLocale();
 			final String lang = l.getLanguage();
+
+			final Long date = fecha.getTime();
 
 			final Collection<Submission> acceptedSubmissions = this.submissionService.findAcceptedSubmissionsByConference(conference);
 			final Collection<Submission> rejectedSubmissions = this.submissionService.findRejectedSubmissionsByConference(conference);
@@ -102,6 +104,7 @@ public class ConferenceAdministratorController extends AbstractController {
 			result.addObject("rejectedSubmissions", rejectedSubmissions);
 			result.addObject("bool", bool);
 			result.addObject("lang", lang);
+			result.addObject("date", date);
 			result.addObject("quolets", quolets);
 
 		} catch (final Exception e) {

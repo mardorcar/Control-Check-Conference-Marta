@@ -2,6 +2,7 @@
 package controllers.administrator;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import services.AdministratorService;
 import services.ConferenceService;
 import services.QuoletService;
 import controllers.AbstractController;
+import domain.Administrator;
 import domain.Conference;
 import domain.Quolet;
 
@@ -41,7 +43,13 @@ public class QuoletAdministratorController extends AbstractController {
 		ModelAndView result;
 		try {
 
-			this.administratorService.findByPrincipal();
+			final Administrator admin = this.administratorService.findByPrincipal();
+
+			final Date fecha = new Date();
+			final Long date = fecha.getTime();
+
+			final Collection<Quolet> finalQuoletsAdmin = this.quoletService.findFinalQuoletsByAdmin(admin.getId());
+			final Collection<Quolet> draftQuoletsAdmin = this.quoletService.findDraftQuoletsByAdmin(admin.getId());
 
 			final Collection<Quolet> finalQuolets = this.quoletService.findFinalQuolets();
 			final Collection<Quolet> draftQuolets = this.quoletService.findDraftQuolets();
@@ -50,7 +58,10 @@ public class QuoletAdministratorController extends AbstractController {
 			final String lang = l.getLanguage();
 
 			result = new ModelAndView("quolet/list");
+			result.addObject("date", date);
 			result.addObject("requestURI", "/quolet/administrator/list.do");
+			result.addObject("finalQuoletsAdmin", finalQuoletsAdmin);
+			result.addObject("draftQuoletsAdmin", draftQuoletsAdmin);
 			result.addObject("finalQuolets", finalQuolets);
 			result.addObject("draftQuolets", draftQuolets);
 			result.addObject("lang", lang);
@@ -75,13 +86,26 @@ public class QuoletAdministratorController extends AbstractController {
 			result.addObject("conferences", conferences);
 
 		} catch (final Throwable oops) {
+
+			final Administrator admin = this.administratorService.findByPrincipal();
+
+			final Date fecha = new Date();
+			final Long date = fecha.getTime();
+
+			final Collection<Quolet> finalQuoletsAdmin = this.quoletService.findFinalQuoletsByAdmin(admin.getId());
+			final Collection<Quolet> draftQuoletsAdmin = this.quoletService.findDraftQuoletsByAdmin(admin.getId());
+
 			final Collection<Quolet> finalQuolets = this.quoletService.findFinalQuolets();
 			final Collection<Quolet> draftQuolets = this.quoletService.findDraftQuolets();
+
 			final Collection<Conference> conferences = this.conferenceService.findNextConferences();
 			if (conferences.isEmpty()) {
 				result = new ModelAndView("quolet/list");
 				result.addObject("finalQuolets", finalQuolets);
 				result.addObject("draftQuolets", draftQuolets);
+				result.addObject("finalQuoletsAdmin", finalQuoletsAdmin);
+				result.addObject("draftQuoletsAdmin", draftQuoletsAdmin);
+				result.addObject("date", date);
 				result.addObject("message", "quolet.conferences.error");
 
 			} else
@@ -116,27 +140,35 @@ public class QuoletAdministratorController extends AbstractController {
 	public ModelAndView save(@ModelAttribute("quolet") final Quolet quolet, final BindingResult binding) {
 
 		ModelAndView result;
-		this.administratorService.findByPrincipal();
-		final Quolet quoletF = this.quoletService.reconstructSave(quolet, binding);
-		if (binding.hasErrors()) {
 
-			final Collection<Conference> conferences = this.conferenceService.findNextConferences();
-			Assert.notEmpty(conferences);
-			result = new ModelAndView("quolet/edit");
-			result.addObject("quolet", quolet);
-			result.addObject("conferences", conferences);
+		try {
 
-		} else
-			try {
+			this.administratorService.findByPrincipal();
+			final Quolet quoletF = this.quoletService.reconstruct(quolet, binding);
+			if (binding.hasErrors()) {
 
-				this.quoletService.save(quoletF);
-				result = new ModelAndView("redirect:/quolet/administrator/list.do");
-
-			} catch (final Throwable oops) {
+				final Collection<Conference> conferences = this.conferenceService.findNextConferences();
+				Assert.notEmpty(conferences);
 				result = new ModelAndView("quolet/edit");
 				result.addObject("quolet", quolet);
-				result.addObject("message", "quolet.commit.error");
-			}
+				result.addObject("conferences", conferences);
+
+			} else
+				try {
+
+					this.quoletService.save(quoletF);
+					result = new ModelAndView("redirect:/quolet/administrator/list.do");
+
+				} catch (final Throwable oops) {
+					result = new ModelAndView("quolet/edit");
+					result.addObject("quolet", quolet);
+					result.addObject("message", "quolet.conferences.error");
+				}
+		} catch (final Throwable oops) {
+			result = new ModelAndView("quolet/edit");
+			result.addObject("quolet", quolet);
+			result.addObject("message", "quolet.commit.error");
+		}
 
 		return result;
 

@@ -27,14 +27,17 @@
 		
 		<security:intercept-url pattern="/conference/search.do"
 			access="permitAll" />
+			
+		<security:intercept-url pattern="/quolet/list.do"
+			access="permitAll" />
+		<security:intercept-url pattern="/quolet/show.do"
+			access="permitAll" />
 
 		<security:intercept-url pattern="/favicon.ico"
 			access="permitAll" />
 		<security:intercept-url pattern="/images/**"
 			access="permitAll" />
 		<security:intercept-url pattern="/scripts/**"
-			access="permitAll" />
-		<security:intercept-url pattern="/quolet/list.do"
 			access="permitAll" />
 		<security:intercept-url pattern="/styles/**"
 			access="permitAll" />

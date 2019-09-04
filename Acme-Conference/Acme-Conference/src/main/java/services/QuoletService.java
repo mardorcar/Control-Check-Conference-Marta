@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
 import repositories.QuoletRepository;
+import domain.Administrator;
 import domain.Quolet;
 
 @Service
@@ -23,10 +24,13 @@ import domain.Quolet;
 public class QuoletService {
 
 	@Autowired
-	private QuoletRepository	quoletRepository;
+	private QuoletRepository		quoletRepository;
 
 	@Autowired
-	private Validator			validator;
+	private Validator				validator;
+
+	@Autowired
+	private AdministratorService	administratorService;
 
 
 	//COnstructors -------------------------
@@ -86,16 +90,26 @@ public class QuoletService {
 		return res;
 	}
 
-	public String generateTicker() {
+	public Collection<Quolet> findFinalQuoletsByAdmin(final int adminId) {
+		Collection<Quolet> res = new ArrayList<>();
+		res = this.quoletRepository.findFinalQuoletsByAdmin(adminId);
+		return res;
+	}
+
+	public Collection<Quolet> findDraftQuoletsByAdmin(final int adminId) {
+		Collection<Quolet> res = new ArrayList<>();
+		res = this.quoletRepository.findDraftQuoletsByAdmin(adminId);
+		return res;
+	}
+
+	public String generateTicker(final Date date) {
 		String result = "";
 
-		final Date date = new Date();
-		final Date aux = date;
 		final DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd");
 
 		final String randomCode = this.generateRandomString(4);
 
-		result += dateFormat.format(aux) + "-" + randomCode;
+		result += dateFormat.format(date) + "-" + randomCode;
 
 		return result;
 	}
@@ -122,39 +136,15 @@ public class QuoletService {
 		}
 
 		return sb.toString();
-
-	}
-	public Quolet reconstruct(final Quolet quolet) {
-		final Quolet res = quolet;
-		final Date date = new Date();
-		if (quolet.getId() == 0) {
-			res.setTicker(this.generateTicker());
-			res.setPublicationMoment(date);
-
-		} else {
-			final Quolet confDB = this.findOne(quolet.getId());
-			Assert.isTrue(confDB.getMode().equals("DRAFT"));
-			res.setTicker(quolet.getTicker());
-			res.setPublicationMoment(quolet.getPublicationMoment());
-		}
-
-		return res;
 	}
 
-	public Quolet reconstructSave(final Quolet quolet, final BindingResult binding) {
+	public Quolet reconstruct(final Quolet quolet, final BindingResult binding) {
+		final Administrator administrator = this.administratorService.findByPrincipal();
 		final Quolet res = quolet;
 		final Date date = new Date();
-		if (quolet.getId() == 0) {
-			res.setTicker(this.generateTicker());
-			res.setPublicationMoment(date);
-
-		} else {
-			final Quolet confDB = this.findOne(quolet.getId());
-			Assert.isTrue(confDB.getMode().equals("DRAFT"));
-			res.setTicker(quolet.getTicker());
-			res.setPublicationMoment(quolet.getPublicationMoment());
-		}
-
+		res.setTicker(this.generateTicker(date));
+		res.setPublicationMoment(date);
+		res.setAdministrator(administrator);
 		this.validator.validate(res, binding);
 		return res;
 	}
