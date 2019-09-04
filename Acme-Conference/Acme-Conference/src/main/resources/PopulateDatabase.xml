@@ -13,9 +13,9 @@
 	<!-- User accounts -->
 
 	<bean id="userAccount1" class="security.UserAccount">
-		<property name="username" value="admin" />
+		<property name="username" value="administrator1" />
 		<property name="password"
-			value="21232f297a57a5a743894a0e4a801fc3" />
+			value="d5cee333abe432891a0de57d0ee38713" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -26,9 +26,9 @@
 	</bean>
 	
 	<bean id="userAccount13" class="security.UserAccount">
-		<property name="username" value="admin2" />
+		<property name="username" value="administrator2" />
 		<property name="password"
-			value="c84258e9c39059a89ab77d846ddab909" />
+			value="82954495ff7e2a735ed2192c35b2cd00" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -284,7 +284,7 @@
 
 	<!-- Actors -->
 
-	<bean id="admin" class="domain.Administrator">
+	<bean id="administrator1" class="domain.Administrator">
 		<property name="address"
 			value="1600 Pennsylvania Ave NW, Washington, DC 20500, USA" />
 		<property name="email" value="admin@" />
@@ -297,7 +297,7 @@
 		<property name="userAccount" ref="userAccount1" />
 	</bean>
 	
-	<bean id="admin2" class="domain.Administrator">
+	<bean id="administrator2" class="domain.Administrator">
 		<property name="address"
 			value="1600 Pennsylvania Ave NW, Washington, DC 20500, USA" />
 		<property name="email" value="admin2@" />
@@ -549,10 +549,10 @@
 			value="Jajajaja" />
 		<property name="moment" value="08/08/2018 00:54" />
 		<property name="recipient" ref="author1" />
-		<property name="sender" ref="admin" />
+		<property name="sender" ref="administrator1" />
 		<property name="subject" value="Jajaja" />
 		<property name="copy" value="false" />
-		<property name="owner" ref="admin" />
+		<property name="owner" ref="administrator1" />
 		<property name="spam" value="false" />
 		<property name="deleted" value="false" />
 		<property name="tags" value="" />
@@ -691,7 +691,7 @@
 			value="Jajajaja" />
 		<property name="moment" value="08/08/2018 00:54" />
 		<property name="recipient" ref="author1" />
-		<property name="sender" ref="admin" />
+		<property name="sender" ref="administrator1" />
 		<property name="subject" value="Jajaja" />
 		<property name="copy" value="true" />
 		<property name="owner" ref="author1" />
@@ -705,7 +705,7 @@
 
 	<bean id="conference1" class="domain.Conference">
 		<property name="acronym" value="BAE" />
-		<property name="administrator" ref="admin" />
+		<property name="administrator" ref="administrator1" />
 		<property name="cameraReady" value="12/30/2019 15:30" />
 		<property name="category" ref="category1" />
 		<property name="endDate" value="12/30/2020 20:00" />
@@ -722,7 +722,7 @@
 
 	<bean id="conference2" class="domain.Conference">
 		<property name="acronym" value="GF" />
-		<property name="administrator" ref="admin" />
+		<property name="administrator" ref="administrator1" />
 		<property name="cameraReady" value="08/08/2019 15:30" />
 		<property name="category" ref="category1" />
 		<property name="endDate" value="12/30/2020 20:00" />
@@ -739,7 +739,7 @@
 
 	<bean id="conference3" class="domain.Conference">
 		<property name="acronym" value="TBC" />
-		<property name="administrator" ref="admin" />
+		<property name="administrator" ref="administrator1" />
 		<property name="cameraReady" value="11/30/2019 21:30" />
 		<property name="category" ref="category4" />
 		<property name="endDate" value="12/31/2020 20:00" />
@@ -756,7 +756,7 @@
 
 	<bean id="conference4" class="domain.Conference">
 		<property name="acronym" value="PG19" />
-		<property name="administrator" ref="admin" />
+		<property name="administrator" ref="administrator1" />
 		<property name="cameraReady" value="11/30/2019 21:30" />
 		<property name="category" ref="category1" />
 		<property name="endDate" value="12/30/2020 20:00" />
@@ -773,7 +773,7 @@
 
 	<bean id="conference5" class="domain.Conference">
 		<property name="acronym" value="TFG" />
-		<property name="administrator" ref="admin" />
+		<property name="administrator" ref="administrator1" />
 		<property name="cameraReady" value="08/08/2019 15:30" />
 		<property name="category" ref="category3" />
 		<property name="endDate" value="12/30/2020 20:00" />
@@ -790,7 +790,7 @@
 
 	<bean id="conference6" class="domain.Conference">
 		<property name="acronym" value="MSB" />
-		<property name="administrator" ref="admin" />
+		<property name="administrator" ref="administrator1" />
 		<property name="cameraReady" value="08/07/2019 21:30" />
 		<property name="category" ref="category6" />
 		<property name="endDate" value="12/30/2020 20:00" />
@@ -807,7 +807,7 @@
 
 	<bean id="conference7" class="domain.Conference">
 		<property name="acronym" value="OLS" />
-		<property name="administrator" ref="admin" />
+		<property name="administrator" ref="administrator1" />
 		<property name="cameraReady" value="08/08/2019 15:30" />
 		<property name="category" ref="category9" />
 		<property name="endDate" value="08/20/2020 20:00" />
@@ -1493,7 +1493,7 @@
 
 	<!-- Quolets -->
 	<bean id="quolet1" class="domain.Quolet">
-		<property name="administrator" ref="admin" />
+		<property name="administrator" ref="administrator1" />
 		<property name="conference" ref="conference1" />
 		<property name="ticker" value="19-04-19-7H6T" />
 		<property name="publicationMoment" value="2019/04/19 18:45" />
@@ -1503,7 +1503,7 @@
 	</bean>
 	
 	<bean id="quolet2" class="domain.Quolet">
-		<property name="administrator" ref="admin" />
+		<property name="administrator" ref="administrator1" />
 		<property name="conference" ref="conference3" />
 		<property name="ticker" value="19-08-01-1B6T" />
 		<property name="publicationMoment" value="2019/08/01 10:45" />
@@ -1513,7 +1513,7 @@
 	</bean>
 	
 	<bean id="quolet3" class="domain.Quolet">
-		<property name="administrator" ref="admin2" />
+		<property name="administrator" ref="administrator2" />
 		<property name="conference" ref="conference1" />
 		<property name="ticker" value="19-09-04-8VWT" />
 		<property name="publicationMoment" value="2019/09/04 10:45" />
@@ -1523,7 +1523,7 @@
 	</bean>
 	
 	<bean id="quolet4" class="domain.Quolet">
-		<property name="administrator" ref="admin2" />
+		<property name="administrator" ref="administrator2" />
 		<property name="conference" ref="conference3" />
 		<property name="ticker" value="19-03-10-1VNK" />
 		<property name="publicationMoment" value="2019/03/10 10:45" />
