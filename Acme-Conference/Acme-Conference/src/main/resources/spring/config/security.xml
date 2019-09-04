@@ -28,6 +28,9 @@
 		<security:intercept-url pattern="/conference/search.do"
 			access="permitAll" />
 			
+		<security:intercept-url pattern="/section/show.do"
+			access="permitAll" />
+			
 		<security:intercept-url pattern="/quolet/list.do"
 			access="permitAll" />
 		<security:intercept-url pattern="/quolet/show.do"

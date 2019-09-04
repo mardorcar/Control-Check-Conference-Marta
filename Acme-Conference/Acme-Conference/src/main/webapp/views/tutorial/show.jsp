@@ -78,6 +78,11 @@
 				code="tutorial.section.edit" />
 
 		</display:column>
+		<display:column titleKey="tutorial.section.show">
+			<acme:cancel
+				url="/section/show.do?sectionId=${section.id}"
+				code="tutorial.section.show" />
+		</display:column>
 	</security:authorize>
 
 
