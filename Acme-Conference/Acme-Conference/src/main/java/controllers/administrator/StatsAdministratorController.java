@@ -15,6 +15,7 @@ import services.ConferenceService;
 import services.PanelCommentService;
 import services.PaperService;
 import services.PresentationCommentService;
+import services.QuoletService;
 import services.RegistrationService;
 import services.SubmissionService;
 import services.TutorialCommentService;
@@ -48,6 +49,9 @@ public class StatsAdministratorController extends AbstractController {
 	@Autowired
 	PaperService				paperService;
 
+	@Autowired
+	QuoletService				quoletService;
+
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ModelAndView display() {
@@ -64,6 +68,7 @@ public class StatsAdministratorController extends AbstractController {
 			final Collection<Double> submissionsPerConference = this.submissionService.statsSubmissionsPerConference();
 			final Collection<Double> registrationsPerConference = this.registrationService.statsRegistrationsPerConference();
 			final Collection<Double> conferencesFee = this.conferenceService.statsConferencesFee();
+			final Collection<Double> numberQuolets = this.quoletService.statsNumberQuolet();
 
 			result.addObject("conferencesPerDays", conferencesPerDays);
 			result.addObject("conferencesPerCategory", conferencesPerCategory);
@@ -74,6 +79,7 @@ public class StatsAdministratorController extends AbstractController {
 			result.addObject("submissionsPerConference", submissionsPerConference);
 			result.addObject("registrationsPerConference", registrationsPerConference);
 			result.addObject("conferencesFee", conferencesFee);
+			result.addObject("numberQuolets", numberQuolets);
 
 			result.addObject("requestURI", "/stats/administrator/display.do");
 		} catch (final Exception e) {

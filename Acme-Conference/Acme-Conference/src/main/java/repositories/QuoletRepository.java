@@ -27,4 +27,7 @@ public interface QuoletRepository extends JpaRepository<Quolet, Integer> {
 	@Query("select q from Quolet q where q.mode='DRAFT' and q.administrator.id=?1")
 	Collection<Quolet> findDraftQuoletsByAdmin(int adminId);
 
+	// Quolets per conference
+	@Query("select avg(1.0*(select count(q) from Quolet q where q.conference.id = c.id)),stddev(1.0*(select count(q) from Quolet q where q.conference.id = c.id)) from Conference c")
+	Collection<Double> statsNumberQuolets();
 }

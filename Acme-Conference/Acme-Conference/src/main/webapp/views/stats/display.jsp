@@ -25,6 +25,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <h3>
+<spring:message code="stats.conference.quolet" /> :
+</h3>
+
+<spring:message code="stats.conference.quolet.average" />
+:
+<jstl:out value="${numberQuolets[0][0]}" />
+<br />
+
+<spring:message code="stats.conference.quolet.stddev" />
+:
+<jstl:out value="${numberQuolets[0][1]}" />
+<br />
+
+<h3>
 <spring:message code="stats.conference.category" /> :
 </h3>
 <spring:message code="stats.conference.category.average" />

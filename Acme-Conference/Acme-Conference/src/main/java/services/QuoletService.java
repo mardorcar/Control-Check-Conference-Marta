@@ -72,6 +72,11 @@ public class QuoletService {
 		this.quoletRepository.delete(quolet);
 	}
 
+	public Collection<Double> statsNumberQuolet() {
+		final Collection<Double> result = this.quoletRepository.statsNumberQuolets();
+		Assert.notNull(result);
+		return result;
+	}
 	public Collection<Quolet> findByConference(final int id) {
 		Collection<Quolet> res = new ArrayList<>();
 		res = this.quoletRepository.findByConference(id);
