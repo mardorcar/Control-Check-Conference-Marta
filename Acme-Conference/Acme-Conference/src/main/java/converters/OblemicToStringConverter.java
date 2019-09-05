@@ -6,19 +6,19 @@ import javax.transaction.Transactional;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import domain.Quolet;
+import domain.Oblemic;
 
 @Component
 @Transactional
-public class QuoletToStringConverter implements Converter<Quolet, String> {
+public class OblemicToStringConverter implements Converter<Oblemic, String> {
 
 	@Override
-	public String convert(final Quolet Quolet) {
+	public String convert(final Oblemic oblemic) {
 		String result;
-		if (Quolet == null)
+		if (oblemic == null)
 			result = null;
 		else
-			result = String.valueOf(Quolet.getId());
+			result = String.valueOf(oblemic.getId());
 		return result;
 	}
 

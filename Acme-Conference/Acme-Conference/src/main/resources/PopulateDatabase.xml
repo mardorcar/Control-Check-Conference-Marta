@@ -1491,45 +1491,45 @@
 		<property name="author" ref="author3" />
 	</bean>
 
-	<!-- Quolets -->
-	<bean id="quolet1" class="domain.Quolet">
+	<!-- Oblemics -->
+	<bean id="oblemic1" class="domain.Oblemic">
 		<property name="administrator" ref="administrator1" />
 		<property name="conference" ref="conference1" />
-		<property name="ticker" value="19-04-19-7H6T" />
+		<property name="ticker" value="7H6T:19:0419" />
 		<property name="publicationMoment" value="2019/04/19 18:45" />
 		<property name="mode" value="FINAL" />
-		<property name="cosa2" value="cosa1TEST" />
-		<property name="cosa3" value="cosa2TEST" />
+		<property name="body" value="TEST TEST TEST" />
+		<property name="picture" value="https://i.blogs.es/aa1b9a/luna-100mpx/450_1000.jpg" />
 	</bean>
 	
-	<bean id="quolet2" class="domain.Quolet">
+	<bean id="oblemic2" class="domain.Oblemic">
 		<property name="administrator" ref="administrator1" />
 		<property name="conference" ref="conference3" />
-		<property name="ticker" value="19-08-01-1B6T" />
+		<property name="ticker" value="1D:19:0801" />
 		<property name="publicationMoment" value="2019/08/01 10:45" />
 		<property name="mode" value="FINAL" />
-		<property name="cosa2" value="cosa1TEST" />
-		<property name="cosa3" value="cosa2TEST" />
+		<property name="body" value="TEST TEST TEST TEST " />
+		<property name="picture" value="https://i.blogs.es/aa1b9a/luna-100mpx/450_1000.jpg" />
 	</bean>
 	
-	<bean id="quolet3" class="domain.Quolet">
+	<bean id="oblemic3" class="domain.Oblemic">
 		<property name="administrator" ref="administrator2" />
 		<property name="conference" ref="conference1" />
-		<property name="ticker" value="19-09-04-8VWT" />
+		<property name="ticker" value="8VW:19:0904" />
 		<property name="publicationMoment" value="2019/09/04 10:45" />
 		<property name="mode" value="FINAL" />
-		<property name="cosa2" value="cosa1TEST" />
-		<property name="cosa3" value="cosa2TEST" />
+		<property name="body" value="TEST TEST TEST" />
+		<property name="picture" value="https://i.blogs.es/aa1b9a/luna-100mpx/450_1000.jpg" />
 	</bean>
 	
-	<bean id="quolet4" class="domain.Quolet">
+	<bean id="oblemic4" class="domain.Oblemic">
 		<property name="administrator" ref="administrator2" />
 		<property name="conference" ref="conference3" />
-		<property name="ticker" value="19-03-10-1VNK" />
+		<property name="ticker" value="1vK:19:0310" />
 		<property name="publicationMoment" value="2019/03/10 10:45" />
 		<property name="mode" value="FINAL" />
-		<property name="cosa2" value="cosa1TEST" />
-		<property name="cosa3" value="cosa2TEST" />
+		<property name="body" value="body TEST TEST TEST" />
+		<property name="picture" value="https://i.blogs.es/aa1b9a/luna-100mpx/450_1000.jpg" />
 	</bean>
 
 	<!-- Submissions -->

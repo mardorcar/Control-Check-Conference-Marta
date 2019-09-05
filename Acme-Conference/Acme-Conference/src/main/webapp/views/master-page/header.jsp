@@ -53,8 +53,8 @@
 		<security:authorize access="hasRole('ADMINISTRATOR')">
 			<li><a class="fNiv" href="submission/administrator/list.do"><spring:message
 					code="master.page.submissions" /></a></li>
-			<li><a class="fNiv" href="quolet/administrator/list.do"><spring:message
-					code="master.page.quolets" /></a></li>
+			<li><a class="fNiv" href="oblemic/administrator/list.do"><spring:message
+					code="master.page.oblemics" /></a></li>
 			<li><a href="stats/administrator/score.do"><spring:message
 								code="master.page.administrator.score" /></a></li>
 		</security:authorize>

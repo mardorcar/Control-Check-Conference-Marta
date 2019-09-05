@@ -15,7 +15,7 @@ import services.ConferenceService;
 import services.PanelCommentService;
 import services.PaperService;
 import services.PresentationCommentService;
-import services.QuoletService;
+import services.OblemicService;
 import services.RegistrationService;
 import services.SubmissionService;
 import services.TutorialCommentService;
@@ -50,7 +50,7 @@ public class StatsAdministratorController extends AbstractController {
 	private PaperService				paperService;
 
 	@Autowired
-	private QuoletService				quoletService;
+	private OblemicService				oblemicService;
 
 
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
@@ -68,9 +68,9 @@ public class StatsAdministratorController extends AbstractController {
 			final Collection<Double> submissionsPerConference = this.submissionService.statsSubmissionsPerConference();
 			final Collection<Double> registrationsPerConference = this.registrationService.statsRegistrationsPerConference();
 			final Collection<Double> conferencesFee = this.conferenceService.statsConferencesFee();
-			final Collection<Double> numberQuolets = this.quoletService.statsNumberQuolet();
-			final Double publishedQuolets = this.quoletService.publishedRatio();
-			final Double unpublishedQuolets = this.quoletService.unpublishedRatio();
+			final Collection<Double> numberOblemics = this.oblemicService.statsNumberOblemic();
+			final Double publishedOblemics = this.oblemicService.publishedRatio();
+			final Double unpublishedOblemics = this.oblemicService.unpublishedRatio();
 
 			result.addObject("conferencesPerDays", conferencesPerDays);
 			result.addObject("conferencesPerCategory", conferencesPerCategory);
@@ -81,9 +81,9 @@ public class StatsAdministratorController extends AbstractController {
 			result.addObject("submissionsPerConference", submissionsPerConference);
 			result.addObject("registrationsPerConference", registrationsPerConference);
 			result.addObject("conferencesFee", conferencesFee);
-			result.addObject("numberQuolets", numberQuolets);
-			result.addObject("publishedQuolets", publishedQuolets);
-			result.addObject("unpublishedQuolets", unpublishedQuolets);
+			result.addObject("numberOblemics", numberOblemics);
+			result.addObject("publishedOblemics", publishedOblemics);
+			result.addObject("unpublishedOblemics", unpublishedOblemics);
 
 			result.addObject("requestURI", "/stats/administrator/display.do");
 		} catch (final Exception e) {

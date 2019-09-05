@@ -31,9 +31,9 @@
 		<security:intercept-url pattern="/section/show.do"
 			access="permitAll" />
 			
-		<security:intercept-url pattern="/quolet/list.do"
+		<security:intercept-url pattern="/oblemic/list.do"
 			access="permitAll" />
-		<security:intercept-url pattern="/quolet/show.do"
+		<security:intercept-url pattern="/oblemic/show.do"
 			access="permitAll" />
 
 		<security:intercept-url pattern="/favicon.ico"
@@ -94,7 +94,7 @@
 			access="isAuthenticated()" />
 			
 		<security:intercept-url
-			pattern="/quolet/administrator/*"
+			pattern="/oblemic/administrator/*"
 			access="hasRole('ADMINISTRATOR')" />
 		
 		<security:intercept-url

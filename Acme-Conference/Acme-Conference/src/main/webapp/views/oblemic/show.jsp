@@ -22,23 +22,29 @@
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 
-<acme:display code="quolet.ticker" path="${quolet.ticker}" />
+<acme:display code="oblemic.ticker" path="${oblemic.ticker}" />
 <jstl:choose>
 	<jstl:when test="${lang eq 'en'}">
-		<spring:message code="quolet.publicationMoment"/>: <fmt:formatDate type = "date" pattern = "yy/MM/dd HH:mm"
-         value = "${quolet.publicationMoment}" />
+		<spring:message code="oblemic.publicationMoment"/>: <fmt:formatDate type = "date" pattern = "yy/MM/dd HH:mm"
+         value = "${oblemic.publicationMoment}" />
     </jstl:when>
     <jstl:otherwise>
-    	<spring:message code="quolet.publicationMoment"/>: <fmt:formatDate type = "date" pattern = "dd-MM-yy HH:mm"
-         value = "${quolet.publicationMoment}" />
+    	<spring:message code="oblemic.publicationMoment"/>: <fmt:formatDate type = "date" pattern = "dd-MM-yy HH:mm"
+         value = "${oblemic.publicationMoment}" />
     </jstl:otherwise>
 </jstl:choose>
-<acme:display code="quolet.cosa2" path="${quolet.cosa2}" />
-<acme:display code="quolet.cosa3" path="${quolet.cosa3}" />
+<acme:display code="oblemic.body" path="${oblemic.body}" />
+
+<spring:message code="oblemic.picture" />:
+<br>
+<br>
+<img src="${oblemic.picture}" />
+
 
 
 
 <br>
-<acme:cancel url="/quolet/administrator/list.do"
+<br>
+<acme:cancel url="/oblemic/administrator/list.do"
 							code="msg.cancel" />
 

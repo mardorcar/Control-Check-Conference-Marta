@@ -8,20 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
-import repositories.QuoletRepository;
-import domain.Quolet;
+import repositories.OblemicRepository;
+import domain.Oblemic;
 
 @Component
 @Transactional
-public class StringToQuoletConverter implements Converter<String, Quolet> {
+public class StringToOblemicConverter implements Converter<String, Oblemic> {
 
 	@Autowired
-	QuoletRepository	QuoletRepository;
+	OblemicRepository	OblemicRepository;
 
 
 	@Override
-	public Quolet convert(final String text) {
-		Quolet result;
+	public Oblemic convert(final String text) {
+		Oblemic result;
 		int id;
 
 		try {
@@ -29,7 +29,7 @@ public class StringToQuoletConverter implements Converter<String, Quolet> {
 				result = null;
 			else {
 				id = Integer.valueOf(text);
-				result = this.QuoletRepository.findOne(id);
+				result = this.OblemicRepository.findOne(id);
 			}
 		} catch (final Throwable oops) {
 			throw new IllegalArgumentException(oops);

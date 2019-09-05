@@ -18,18 +18,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.AdministratorService;
 import services.ConferenceService;
-import services.QuoletService;
+import services.OblemicService;
 import controllers.AbstractController;
 import domain.Administrator;
 import domain.Conference;
-import domain.Quolet;
+import domain.Oblemic;
 
 @Controller
-@RequestMapping("/quolet/administrator")
-public class QuoletAdministratorController extends AbstractController {
+@RequestMapping("/oblemic/administrator")
+public class OblemicAdministratorController extends AbstractController {
 
 	@Autowired
-	private QuoletService			quoletService;
+	private OblemicService			oblemicService;
 
 	@Autowired
 	private AdministratorService	administratorService;
@@ -48,22 +48,22 @@ public class QuoletAdministratorController extends AbstractController {
 			final Date fecha = new Date();
 			final Long date = fecha.getTime();
 
-			final Collection<Quolet> finalQuoletsAdmin = this.quoletService.findFinalQuoletsByAdmin(admin.getId());
-			final Collection<Quolet> draftQuoletsAdmin = this.quoletService.findDraftQuoletsByAdmin(admin.getId());
+			final Collection<Oblemic> finalOblemicsAdmin = this.oblemicService.findFinalOblemicsByAdmin(admin.getId());
+			final Collection<Oblemic> draftOblemicsAdmin = this.oblemicService.findDraftOblemicsByAdmin(admin.getId());
 
-			final Collection<Quolet> finalQuolets = this.quoletService.findFinalQuolets();
-			final Collection<Quolet> draftQuolets = this.quoletService.findDraftQuolets();
+			final Collection<Oblemic> finalOblemics = this.oblemicService.findFinalOblemics();
+			final Collection<Oblemic> draftOblemics = this.oblemicService.findDraftOblemics();
 
 			final Locale l = LocaleContextHolder.getLocale();
 			final String lang = l.getLanguage();
 
-			result = new ModelAndView("quolet/list");
+			result = new ModelAndView("oblemic/list");
 			result.addObject("date", date);
-			result.addObject("requestURI", "/quolet/administrator/list.do");
-			result.addObject("finalQuoletsAdmin", finalQuoletsAdmin);
-			result.addObject("draftQuoletsAdmin", draftQuoletsAdmin);
-			result.addObject("finalQuolets", finalQuolets);
-			result.addObject("draftQuolets", draftQuolets);
+			result.addObject("requestURI", "/oblemic/administrator/list.do");
+			result.addObject("finalOblemicsAdmin", finalOblemicsAdmin);
+			result.addObject("draftOblemicsAdmin", draftOblemicsAdmin);
+			result.addObject("finalOblemics", finalOblemics);
+			result.addObject("draftOblemics", draftOblemics);
 			result.addObject("lang", lang);
 
 		} catch (final Exception e) {
@@ -80,9 +80,9 @@ public class QuoletAdministratorController extends AbstractController {
 			this.administratorService.findByPrincipal();
 			final Collection<Conference> conferences = this.conferenceService.findNextConferences();
 			Assert.notEmpty(conferences);
-			final Quolet quolet = this.quoletService.create();
-			result = new ModelAndView("quolet/edit");
-			result.addObject("quolet", quolet);
+			final Oblemic oblemic = this.oblemicService.create();
+			result = new ModelAndView("oblemic/edit");
+			result.addObject("oblemic", oblemic);
 			result.addObject("conferences", conferences);
 
 		} catch (final Throwable oops) {
@@ -92,21 +92,21 @@ public class QuoletAdministratorController extends AbstractController {
 			final Date fecha = new Date();
 			final Long date = fecha.getTime();
 
-			final Collection<Quolet> finalQuoletsAdmin = this.quoletService.findFinalQuoletsByAdmin(admin.getId());
-			final Collection<Quolet> draftQuoletsAdmin = this.quoletService.findDraftQuoletsByAdmin(admin.getId());
+			final Collection<Oblemic> finalOblemicsAdmin = this.oblemicService.findFinalOblemicsByAdmin(admin.getId());
+			final Collection<Oblemic> draftOblemicsAdmin = this.oblemicService.findDraftOblemicsByAdmin(admin.getId());
 
-			final Collection<Quolet> finalQuolets = this.quoletService.findFinalQuolets();
-			final Collection<Quolet> draftQuolets = this.quoletService.findDraftQuolets();
+			final Collection<Oblemic> finalOblemics = this.oblemicService.findFinalOblemics();
+			final Collection<Oblemic> draftOblemics = this.oblemicService.findDraftOblemics();
 
 			final Collection<Conference> conferences = this.conferenceService.findNextConferences();
 			if (conferences.isEmpty()) {
-				result = new ModelAndView("quolet/list");
-				result.addObject("finalQuolets", finalQuolets);
-				result.addObject("draftQuolets", draftQuolets);
-				result.addObject("finalQuoletsAdmin", finalQuoletsAdmin);
-				result.addObject("draftQuoletsAdmin", draftQuoletsAdmin);
+				result = new ModelAndView("oblemic/list");
+				result.addObject("finalOblemics", finalOblemics);
+				result.addObject("draftOblemics", draftOblemics);
+				result.addObject("finalOblemicsAdmin", finalOblemicsAdmin);
+				result.addObject("draftOblemicsAdmin", draftOblemicsAdmin);
 				result.addObject("date", date);
-				result.addObject("message", "quolet.conferences.error");
+				result.addObject("message", "oblemic.conferences.error");
 
 			} else
 				result = new ModelAndView("redirect:/#");
@@ -114,7 +114,7 @@ public class QuoletAdministratorController extends AbstractController {
 		return result;
 	}
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam("quoletId") final int quoletId) {
+	public ModelAndView edit(@RequestParam("oblemicId") final int oblemicId) {
 
 		ModelAndView result;
 
@@ -122,11 +122,11 @@ public class QuoletAdministratorController extends AbstractController {
 			this.administratorService.findByPrincipal();
 			final Collection<Conference> conferences = this.conferenceService.findNextConferences();
 			Assert.notEmpty(conferences);
-			final Quolet quolet = this.quoletService.findOne(quoletId);
-			Assert.notNull(quolet);
-			Assert.isTrue(quolet.getMode().equals("DRAFT"));
-			result = new ModelAndView("quolet/edit");
-			result.addObject("quolet", quolet);
+			final Oblemic oblemic = this.oblemicService.findOne(oblemicId);
+			Assert.notNull(oblemic);
+			Assert.isTrue(oblemic.getMode().equals("DRAFT"));
+			result = new ModelAndView("oblemic/edit");
+			result.addObject("oblemic", oblemic);
 			result.addObject("conferences", conferences);
 
 		} catch (final Throwable oops) {
@@ -137,56 +137,56 @@ public class QuoletAdministratorController extends AbstractController {
 		return result;
 	}
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public ModelAndView save(@ModelAttribute("quolet") final Quolet quolet, final BindingResult binding) {
+	public ModelAndView save(@ModelAttribute("oblemic") final Oblemic oblemic, final BindingResult binding) {
 
 		ModelAndView result;
 
 		try {
 
 			this.administratorService.findByPrincipal();
-			final Quolet quoletF = this.quoletService.reconstruct(quolet, binding);
+			final Oblemic oblemicF = this.oblemicService.reconstruct(oblemic, binding);
 			if (binding.hasErrors()) {
 
 				final Collection<Conference> conferences = this.conferenceService.findNextConferences();
 				Assert.notEmpty(conferences);
-				result = new ModelAndView("quolet/edit");
-				result.addObject("quolet", quolet);
+				result = new ModelAndView("oblemic/edit");
+				result.addObject("oblemic", oblemic);
 				result.addObject("conferences", conferences);
 
 			} else
 				try {
 
-					this.quoletService.save(quoletF);
-					result = new ModelAndView("redirect:/quolet/administrator/list.do");
+					this.oblemicService.save(oblemicF);
+					result = new ModelAndView("redirect:/oblemic/administrator/list.do");
 
 				} catch (final Throwable oops) {
-					result = new ModelAndView("quolet/edit");
-					result.addObject("quolet", quolet);
-					result.addObject("message", "quolet.conferences.error");
+					result = new ModelAndView("oblemic/edit");
+					result.addObject("oblemic", oblemic);
+					result.addObject("message", "oblemic.conferences.error");
 				}
 		} catch (final Throwable oops) {
-			result = new ModelAndView("quolet/edit");
-			result.addObject("quolet", quolet);
-			result.addObject("message", "quolet.commit.error");
+			result = new ModelAndView("oblemic/edit");
+			result.addObject("oblemic", oblemic);
+			result.addObject("message", "oblemic.commit.error");
 		}
 
 		return result;
 
 	}
 	@RequestMapping(value = "edit", method = RequestMethod.POST, params = "delete")
-	public ModelAndView delete(final Quolet quolet, final BindingResult binding) {
+	public ModelAndView delete(final Oblemic oblemic, final BindingResult binding) {
 		ModelAndView result;
-		final Quolet res = this.quoletService.findOne(quolet.getId());
+		final Oblemic res = this.oblemicService.findOne(oblemic.getId());
 
 		try {
 			this.administratorService.findByPrincipal();
-			this.quoletService.delete(res);
-			result = new ModelAndView("redirect:/quolet/administrator/list.do");
+			this.oblemicService.delete(res);
+			result = new ModelAndView("redirect:/oblemic/administrator/list.do");
 		} catch (final Throwable oops) {
 
 			final Collection<Conference> conferences = this.conferenceService.findNextConferences();
-			result = new ModelAndView("quolet/edit");
-			result.addObject("quolet", quolet);
+			result = new ModelAndView("oblemic/edit");
+			result.addObject("oblemic", oblemic);
 			result.addObject("conferences", conferences);
 			result.addObject("message", oops.getMessage());
 		}
@@ -194,20 +194,20 @@ public class QuoletAdministratorController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
-	public ModelAndView show(@RequestParam final int quoletId) {
+	public ModelAndView show(@RequestParam final int oblemicId) {
 		ModelAndView result;
 		try {
 			this.administratorService.findByPrincipal();
-			final Quolet quolet = this.quoletService.findOne(quoletId);
-			Assert.notNull(quolet);
+			final Oblemic oblemic = this.oblemicService.findOne(oblemicId);
+			Assert.notNull(oblemic);
 
 			final Locale l = LocaleContextHolder.getLocale();
 			final String lang = l.getLanguage();
 
-			result = new ModelAndView("quolet/show");
+			result = new ModelAndView("oblemic/show");
 
-			result.addObject("requestURI", "quolet/administrator/show.do");
-			result.addObject("quolet", quolet);
+			result.addObject("requestURI", "oblemic/administrator/show.do");
+			result.addObject("oblemic", oblemic);
 			result.addObject("lang", lang);
 
 		} catch (final Exception e) {

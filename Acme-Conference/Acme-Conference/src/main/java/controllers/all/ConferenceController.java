@@ -16,13 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import services.ConferenceCommentService;
 import services.ConferenceService;
-import services.QuoletService;
+import services.OblemicService;
 import services.SponsorshipService;
 import services.SubmissionService;
 import controllers.AbstractController;
 import domain.Conference;
 import domain.ConferenceComment;
-import domain.Quolet;
+import domain.Oblemic;
 import domain.Sponsorship;
 import domain.Submission;
 
@@ -40,7 +40,7 @@ public class ConferenceController extends AbstractController {
 	private SponsorshipService			sponsorshipService;
 
 	@Autowired
-	private QuoletService				quoletService;
+	private OblemicService				oblemicService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -113,7 +113,7 @@ public class ConferenceController extends AbstractController {
 
 			final Boolean bool = acceptedSubmissions.size() + rejectedSubmissions.size() > 0;
 
-			final Collection<Quolet> quolets = this.quoletService.findByConference(conferenceId);
+			final Collection<Oblemic> oblemics = this.oblemicService.findByConference(conferenceId);
 			final Sponsorship sponsorship = this.sponsorshipService.findRandomByConference(conferenceId);
 
 			result.addObject("requestURI", "conference/show.do");
@@ -124,7 +124,7 @@ public class ConferenceController extends AbstractController {
 			result.addObject("lang", lang);
 			result.addObject("date", date);
 			result.addObject("sponsorship", sponsorship);
-			result.addObject("quolets", quolets);
+			result.addObject("oblemics", oblemics);
 
 			final Collection<ConferenceComment> comments = this.conferenceCommentService.listCommentsByConference(conferenceId);
 			result.addObject("comments", comments);

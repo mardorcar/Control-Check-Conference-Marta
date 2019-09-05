@@ -139,79 +139,79 @@
 </display:table>
 
 <h4>
-	<spring:message code="conference.quolets" />
+	<spring:message code="conference.oblemics" />
 </h4>
 
-<display:table name="quolets" id="quolet" requestURI="${requestURI}"
+<display:table name="oblemics" id="oblemic" requestURI="${requestURI}"
 	class="displaytag table" pagesize="5">
-	<jstl:if test="${((date-quolet.publicationMoment.time)/86400000)<30}">
-	<display:column style="color:red" titleKey="quolet.ticker"  property="ticker" />
+	<jstl:if test="${((date-oblemic.publicationMoment.time)/86400000)<30}">
+	<display:column style="color:red" titleKey="oblemic.ticker"  property="ticker" />
 
-	<display:column style="color:red" titleKey="quolet.publicationMoment">
+	<display:column style="color:red" titleKey="oblemic.publicationMoment">
 	<jstl:choose>
 	<jstl:when test="${lang eq 'en'}">
 	<fmt:formatDate type = "date" pattern = "yy/MM/dd HH:mm"
-         value = "${quolet.publicationMoment}" />
+         value = "${oblemic.publicationMoment}" />
      </jstl:when>
     <jstl:otherwise>
     	<fmt:formatDate type = "date" pattern = "dd-MM-yy HH:mm"
-         value = "${quolet.publicationMoment}" />
+         value = "${oblemic.publicationMoment}" />
     </jstl:otherwise>
 </jstl:choose>
 </display:column>	
 
-	<display:column style="color:red" titleKey="quolet.conference"  property="conference.title" />
-	<display:column style="color:red" titleKey="quolet.mode"  property="mode" />
-	<display:column style="color:red" titleKey="quolet.show">
-		<acme:cancel url="/quolet/show.do?quoletId=${quolet.id}" code="quolet.show" />
+	<display:column style="color:red" titleKey="oblemic.conference"  property="conference.title" />
+	<display:column style="color:red" titleKey="oblemic.mode"  property="mode" />
+	<display:column style="color:red" titleKey="oblemic.show">
+		<acme:cancel url="/oblemic/show.do?oblemicId=${oblemic.id}" code="oblemic.show" />
 	</display:column>
 	
 	</jstl:if>
-			<jstl:if test="${((date-quolet.publicationMoment.time)/86400000)>30}">
-			<jstl:if test="${((date-quolet.publicationMoment.time)/86400000)<60}">
-	<display:column style="color:blue" titleKey="quolet.ticker"  property="ticker" />
+			<jstl:if test="${((date-oblemic.publicationMoment.time)/86400000)>30}">
+			<jstl:if test="${((date-oblemic.publicationMoment.time)/86400000)<60}">
+	<display:column style="color:blue" titleKey="oblemic.ticker"  property="ticker" />
 
-	<display:column style="color:blue" titleKey="quolet.publicationMoment">
+	<display:column style="color:blue" titleKey="oblemic.publicationMoment">
 	<jstl:choose>
 	<jstl:when test="${lang eq 'en'}">
 	<fmt:formatDate type = "date" pattern = "yy/MM/dd HH:mm"
-         value = "${quolet.publicationMoment}" />
+         value = "${oblemic.publicationMoment}" />
      </jstl:when>
     <jstl:otherwise>
     	<fmt:formatDate type = "date" pattern = "dd-MM-yy HH:mm"
-         value = "${quolet.publicationMoment}" />
+         value = "${oblemic.publicationMoment}" />
     </jstl:otherwise>
 </jstl:choose>
 </display:column>	
 
-	<display:column style="color:blue" titleKey="quolet.conference"  property="conference.title" />
-	<display:column style="color:blue" titleKey="quolet.mode"  property="mode" />
-	<display:column style="color:blue" titleKey="quolet.show">
-		<acme:cancel url="/quolet/show.do?quoletId=${quolet.id}" code="quolet.show" />
+	<display:column style="color:blue" titleKey="oblemic.conference"  property="conference.title" />
+	<display:column style="color:blue" titleKey="oblemic.mode"  property="mode" />
+	<display:column style="color:blue" titleKey="oblemic.show">
+		<acme:cancel url="/oblemic/show.do?oblemicId=${oblemic.id}" code="oblemic.show" />
 	</display:column>
 	
 	</jstl:if>
 			</jstl:if>
-			<jstl:if test="${((date-quolet.publicationMoment.time)/86400000)>60}">
-		<display:column style="color:green" titleKey="quolet.ticker"  property="ticker" />
+			<jstl:if test="${((date-oblemic.publicationMoment.time)/86400000)>60}">
+		<display:column style="color:green" titleKey="oblemic.ticker"  property="ticker" />
 
-	<display:column style="color:green" titleKey="quolet.publicationMoment">
+	<display:column style="color:green" titleKey="oblemic.publicationMoment">
 	<jstl:choose>
 	<jstl:when test="${lang eq 'en'}">
 	<fmt:formatDate type = "date" pattern = "yy/MM/dd HH:mm"
-         value = "${quolet.publicationMoment}" />
+         value = "${oblemic.publicationMoment}" />
      </jstl:when>
     <jstl:otherwise>
     	<fmt:formatDate type = "date" pattern = "dd-MM-yy HH:mm"
-         value = "${quolet.publicationMoment}" />
+         value = "${oblemic.publicationMoment}" />
     </jstl:otherwise>
 </jstl:choose>
 </display:column>	
 
-	<display:column style="color:green" titleKey="quolet.conference"  property="conference.title" />
-	<display:column style="color:green" titleKey="quolet.mode"  property="mode" />
-	<display:column style="color:green" titleKey="quolet.show">
-		<acme:cancel url="/quolet/show.do?quoletId=${quolet.id}" code="quolet.show" />
+	<display:column style="color:green" titleKey="oblemic.conference"  property="conference.title" />
+	<display:column style="color:green" titleKey="oblemic.mode"  property="mode" />
+	<display:column style="color:green" titleKey="oblemic.show">
+		<acme:cancel url="/oblemic/show.do?oblemicId=${oblemic.id}" code="oblemic.show" />
 	</display:column>
 	</jstl:if>	
 	

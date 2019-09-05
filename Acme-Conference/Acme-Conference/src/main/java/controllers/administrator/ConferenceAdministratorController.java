@@ -19,12 +19,12 @@ import org.springframework.web.servlet.ModelAndView;
 import services.AdministratorService;
 import services.CategoryService;
 import services.ConferenceService;
-import services.QuoletService;
+import services.OblemicService;
 import services.SubmissionService;
 import controllers.AbstractController;
 import domain.Category;
 import domain.Conference;
-import domain.Quolet;
+import domain.Oblemic;
 import domain.Submission;
 
 @Controller
@@ -44,7 +44,7 @@ public class ConferenceAdministratorController extends AbstractController {
 	private CategoryService			categoryService;
 
 	@Autowired
-	private QuoletService			quoletService;
+	private OblemicService			oblemicService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -97,7 +97,7 @@ public class ConferenceAdministratorController extends AbstractController {
 
 			final Boolean bool = acceptedSubmissions.size() + rejectedSubmissions.size() > 0;
 
-			final Collection<Quolet> quolets = this.quoletService.findByConference(conferenceId);
+			final Collection<Oblemic> oblemics = this.oblemicService.findByConference(conferenceId);
 			result.addObject("requestURI", "conference/administrator/show.do");
 			result.addObject("conference", conference);
 			result.addObject("acceptedSubmissions", acceptedSubmissions);
@@ -105,7 +105,7 @@ public class ConferenceAdministratorController extends AbstractController {
 			result.addObject("bool", bool);
 			result.addObject("lang", lang);
 			result.addObject("date", date);
-			result.addObject("quolets", quolets);
+			result.addObject("oblemics", oblemics);
 
 		} catch (final Exception e) {
 			result = new ModelAndView("redirect:/#");

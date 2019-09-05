@@ -26,29 +26,29 @@
 		<div class="col-sm-12 col-md-12 col-lg-12">
 			<fieldset class="col-md-6 col-md-offset-3">
 
-				<form:form action="quolet/administrator/edit.do"
-					modelAttribute="quolet" class="form-horizontal" method="post">
+				<form:form action="oblemic/administrator/edit.do"
+					modelAttribute="oblemic" class="form-horizontal" method="post">
 					<div class="form-group ">
 
 						<form:hidden path="id"/>
 						<form:hidden path="version"/>	
-						<acme:textbox code="quolet.cosa2" path="cosa2" />
-						<acme:textbox code="quolet.cosa3" path="cosa3" />
+						<acme:textarea code="oblemic.body" path="body" />
+						<acme:textbox code="oblemic.picture" path="picture" />
 				
 		
-						<acme:select items="${conferences}" itemLabel="title" code="quolet.conferences" path="conference"/>
+						<acme:select items="${conferences}" itemLabel="title" code="oblemic.conferences" path="conference"/>
 					
-						<spring:message code="quolet.mode"/>
+						<spring:message code="oblemic.mode"/>
 						<form:select path="mode">
 							<form:option value="DRAFT"/>
 							<form:option value="FINAL" />
 						</form:select>
 						
-						<acme:submit name="save" code="quolet.msg.save" />						
-						<acme:cancel url="/quolet/administrator/list.do"
+						<acme:submit name="save" code="oblemic.msg.save" />						
+						<acme:cancel url="/oblemic/administrator/list.do"
 							code="msg.cancel" />
 							
-						 <jstl:if test="${quolet.id!=0}">
+						 <jstl:if test="${oblemic.id!=0}">
 							<acme:submit name="delete" code="msg.delete" />
 						</jstl:if> 
 				
